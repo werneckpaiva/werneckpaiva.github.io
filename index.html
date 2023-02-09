@@ -9,12 +9,65 @@
 <div>
     <div>
         <form>
-            <input type="text" />
+            <input id="txtSentence" type="text" />
         </form>
     </div>
-    <div>
-        
+    <div id="result">
     </div>
 </div>
+
+<script>
+
+    const NATO_ALPHABET = {
+        A: 'Alpha',
+        B: 'Bravo',
+        C: 'Charlie',
+        D: 'Delta',
+        E: 'Echo',
+        F: 'Foxtrot',
+        G: 'Golf',
+        H: 'Hotel',
+        I: 'India',
+        J: 'Juliett',
+        K: 'Kilo',
+        L: 'Lima',
+        M: 'Mike',
+        N: 'November',
+        O: 'Oscar',
+        P: 'Papa',
+        Q: 'Quebec',
+        R: 'Romeo',
+        S: 'Sierra',
+        T: 'Tango',
+        U: 'Uniform',
+        V: 'Victor',
+        W: 'Whiskey',
+        X: 'X-ray',
+        Y: 'Yankee',
+        Z: 'Zulu'
+    };
+
+    function spellSentence(sentence){
+        let result = [];
+        for (let i=0; i<sentence.length; i++){
+            const letter = sentence[i];
+            const upperLetter = letter.toUpperCase()
+            if (upperLetter in NATO_ALPHABET){
+                result.push(NATO_ALPHABET[upperLetter]);
+            }
+        }
+        document.getElementById("result").innerHTML = result.join(", ");
+    }
+
+    function txtSentenceChangeHandler(evt){
+        const sentence = evt.srcElement.value;
+        spellSentence(sentence);
+    }
+
+    const txtSentence = document.getElementById("txtSentence");
+    txtSentence.addEventListener("keyup", txtSentenceChangeHandler);
+</script>
+
+
 </body>
 </html>
